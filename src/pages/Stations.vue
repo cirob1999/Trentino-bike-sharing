@@ -24,7 +24,7 @@
                 <v-list-item-content>
                   <v-list-item-title class="headline mb-1">{{station.name}}</v-list-item-title>
                   <v-list-item-subtitle>{{station.address}}</v-list-item-subtitle>
-                  <b><v-list-item-subtitle>Totale posti disponibili: {{station.totalSlots}}</v-list-item-subtitle></b>
+                  <b><v-list-item-subtitle>Totale posti: {{station.totalSlots}}</v-list-item-subtitle></b>
                 </v-list-item-content>
               </v-list-item>
               <v-card-actions>
