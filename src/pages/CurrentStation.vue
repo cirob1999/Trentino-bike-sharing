@@ -85,10 +85,11 @@
 </template>
 <script>
   import Navbar from '../components/Navbar.vue'
-  import axios from 'axios';
+  import axios from 'axios'
   import router from '../router.js'
   import * as VueGoogleMaps from 'vue2-google-maps'
-  import Vue from 'vue'
+  import dataService from '@/dataService.js'
+  //import Vue from 'vue'
   
   export default {
     name: 'CurrentStation',
@@ -190,14 +191,14 @@
         // restituisce true o false, se filterPreferiti non è ne null ne empty, vuol dire che la stazione attuale è nei preferiti
         //return Array.isArray(filterPreferiti) && filterPreferiti.length;
       //},
-      //switchPreferiti(){
-       // this.preferiti = !this.preferiti
-        //if (this.preferiti){
-         // this.aggiungiPreferiti();
-        //}else{
-         // this.rimuoviPreferiti();
-       // }
-      //}
+      switchPreferiti(){
+        this.preferiti = !this.preferiti
+        if (this.preferiti){
+          dataService.aggiungiPreferiti();
+        }else{
+          dataService.rimuoviPreferiti();
+        }
+      }
     //}
   }
 </script>

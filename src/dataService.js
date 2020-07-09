@@ -1,4 +1,3 @@
-import axios from 'axios'
 import firebase from 'firebase/app' 
 import 'firebase/firestore'
 
@@ -11,43 +10,34 @@ import 'firebase/firestore'
 
    var db = firebase.firestore();
    export default{
-    savePreferito(station) {
+    aggiungiPreferito() {
         // FUNZIONE PER SALVARE IL PREFERITO NEL DB
-
         return db
         .collection('preferiti')
-        .doc(nomeDoc)
-        .set(city);
+        .doc()
+        .set();
     },
-    getFavorite(){ // Salvo in array tutti i giochi preferiti che sono presenti sul database
 
+    prelevaPreferito(){ // Salvo in array tutti i preferiti che sono presenti sul database
         return db
         .collection('preferiti')
         .get().then((data) => {
-
             let arrayPreferiti = [];
-
             data.forEach(doc => {
-
-                arrayPreferiti.push(doc.data().nome);    // metto ogni gioco preferito trovato nel array
-                
+                arrayPreferiti.push(doc.data().nome);    // metto ogni preferito trovato nel array
             });
-
             return {
-
                 arrayPreferiti: arrayPreferiti
-
             }
-
         });
     },
-    cancellaPreferito(doc) { // FUNZIONE PER ELIMINARE IL PREFERITO DAL DB
 
+    rimuoviPreferito(doc) { // FUNZIONE PER ELIMINARE IL PREFERITO DAL DB
         db
         .collection('preferiti')
         .doc(doc)
         .delete();
-
         return true;
 
     }
+}
