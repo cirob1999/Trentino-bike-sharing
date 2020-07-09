@@ -148,7 +148,7 @@
       })
       .finally(() => this.loading = false)
     },
-    //methods: {
+    methods: {
       //aggiungiPreferiti(){
         // Vue.localStorage.get(nomeChiave) -> restituisce tutti i valori dal local storage
         //let localPreferiti = Vue.localStorage.get('preferiti');
@@ -199,6 +199,6 @@
           dataService.rimuoviPreferiti();
         }
       }
-    //}
+    }
   }
 </script>
