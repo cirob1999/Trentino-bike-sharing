@@ -147,57 +147,57 @@
       })
       .finally(() => this.loading = false)
     },
-    methods: {
-      aggiungiPreferiti(){
+    //methods: {
+      //aggiungiPreferiti(){
         // Vue.localStorage.get(nomeChiave) -> restituisce tutti i valori dal local storage
-        let localPreferiti = Vue.localStorage.get('preferiti');
+        //let localPreferiti = Vue.localStorage.get('preferiti');
         // se localPreferiti è null significa che il localstorage è vuoto
-        if (localPreferiti === null){
-          let currentPreferiti = [];
-          let preferito = {'city': this.city, 'name':this.data.name, 'id': this.data.id};
+        //if (localPreferiti === null){
+          //let currentPreferiti = [];
+          //let preferito = {'city': this.city, 'name':this.data.name, 'id': this.data.id};
           // aggiungo i dati all'array
-          currentPreferiti.push(preferito);
+          //currentPreferiti.push(preferito);
           // converto l'array in stringa e lo aggiungo al localstorage
-          Vue.localStorage.set('preferiti', JSON.stringify(currentPreferiti));
-        }else{
+          //Vue.localStorage.set('preferiti', JSON.stringify(currentPreferiti));
+        //}else{
           // converto da stringa ad array il contenuto del localstorage
-          let currentPreferiti = JSON.parse(localPreferiti);
-          let preferito = {'city': this.city, 'name':this.data.name, 'id': this.data.id};
-          currentPreferiti.push(preferito);
-          Vue.localStorage.set('preferiti', JSON.stringify(currentPreferiti));
-        }
-      },
-      rimuoviPreferiti(){
-        let localPreferiti = Vue.localStorage.get('preferiti');
-        if (localPreferiti === null){
-          return;
-        }
-        let currentPreferiti = JSON.parse(localPreferiti);
-        let stationName = this.data.name;
+          //let currentPreferiti = JSON.parse(localPreferiti);
+          //let preferito = {'city': this.city, 'name':this.data.name, 'id': this.data.id};
+          //currentPreferiti.push(preferito);
+          //Vue.localStorage.set('preferiti', JSON.stringify(currentPreferiti));
+        //}
+      //},
+      //rimuoviPreferiti(){
+        //let localPreferiti = Vue.localStorage.get('preferiti');
+        //if (localPreferiti === null){
+         // return;
+       // }
+        //let currentPreferiti = JSON.parse(localPreferiti);
+        //let stationName = this.data.name;
         // filter() restituisce un nuovo array con il nome della mia "stazione"
-        currentPreferiti = currentPreferiti.filter(function( a ) {
-          return a.name !== stationName;
-        });
-        Vue.localStorage.set('preferiti', JSON.stringify(currentPreferiti));
-      },
-      checkIfPreferito(){
-        if (this.data == null){
-          return false;
-        }
-        let localPreferiti = Vue.localStorage.get('preferiti');
-        let currentPreferiti = JSON.parse(localPreferiti);
-        let filterPreferiti = currentPreferiti.filter(a=>a.name===this.data.name);
+        //currentPreferiti = currentPreferiti.filter(function( a ) {
+          //return a.name !== stationName;
+        //});
+        //Vue.localStorage.set('preferiti', JSON.stringify(currentPreferiti));
+      //},
+      //checkIfPreferito(){
+        //if (this.data == null){
+          //return false;
+        //}
+        //let localPreferiti = Vue.localStorage.get('preferiti');
+        //let currentPreferiti = JSON.parse(localPreferiti);
+        //let filterPreferiti = currentPreferiti.filter(a=>a.name===this.data.name);
         // restituisce true o false, se filterPreferiti non è ne null ne empty, vuol dire che la stazione attuale è nei preferiti
-        return Array.isArray(filterPreferiti) && filterPreferiti.length;
-      },
-      switchPreferiti(){
-        this.preferiti = !this.preferiti
-        if (this.preferiti){
-          this.aggiungiPreferiti();
-        }else{
-          this.rimuoviPreferiti();
-        }
-      }
-    }
+        //return Array.isArray(filterPreferiti) && filterPreferiti.length;
+      //},
+      //switchPreferiti(){
+       // this.preferiti = !this.preferiti
+        //if (this.preferiti){
+         // this.aggiungiPreferiti();
+        //}else{
+         // this.rimuoviPreferiti();
+       // }
+      //}
+    //}
   }
 </script>
