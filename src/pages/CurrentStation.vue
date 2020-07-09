@@ -43,7 +43,7 @@
           </v-btn>
           <v-spacer></v-spacer>
           <!-- se preferiti è true allora aggiunge la classe red-text all'icona 
-               v-bind:class -> collego la classe css alla variabile css
+               v-bind:class -> collego la classe css alla variabile preferiti
                                se preferiti è true mette il cuoricino rosso
           -->
           <v-btn 
@@ -153,12 +153,12 @@
         let localPreferiti = Vue.localStorage.get('preferiti');
         // se localPreferiti è null significa che il localstorage è vuoto
         if (localPreferiti === null){
-          let tuttiPreferiti = [];
+          let currentPreferiti = [];
           let preferito = {'city': this.city, 'name':this.data.name, 'id': this.data.id};
           // aggiungo i dati all'array
-          tuttiPreferiti.push(preferito);
+          currentPreferiti.push(preferito);
           // converto l'array in stringa e lo aggiungo al localstorage
-          Vue.localStorage.set('preferiti', JSON.stringify(tuttiPreferiti));
+          Vue.localStorage.set('preferiti', JSON.stringify(currentPreferiti));
         }else{
           // converto da stringa ad array il contenuto del localstorage
           let currentPreferiti = JSON.parse(localPreferiti);
