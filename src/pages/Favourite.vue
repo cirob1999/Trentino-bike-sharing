@@ -76,7 +76,7 @@
       
       this.loading=true;
       
-      DataService.getFavorite().then(data =>{
+      DataService.getPreferito().then(data =>{
         this.fav = [];
         // +++++ CONTROLLO CHE SIANO STATI STROVATI DEI PREFERITI NEL DB +++++
         if (data.arrayPreferiti.length > 0) {
@@ -108,6 +108,8 @@
       //  Vue.localStorage.set('preferiti', JSON.stringify(currentPreferiti));
       //  this.preferiti = this.getPreferiti();
       }
-    //}
-  //}
+    },
+    },
+  },
+}
 </script>

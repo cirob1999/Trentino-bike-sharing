@@ -13,15 +13,17 @@ import 'firebase/firestore'
    export default{
     name: 'DataService',
 
-    aggiungiPreferito(preferito) {
+    aggiungiPreferito(name, city, id) {
         // FUNZIONE PER SALVARE IL PREFERITO NEL DB
+        let nomeDoc = name+"-"+id;
+
         return db
         .collection('preferiti')
-        .doc()
+        .doc(nomeDoc)
         .set({
-            name: preferito.city,
-            city: preferito.name,
-            id: preferito.id
+            nome: name,
+            città: city,
+            id: id
         }
         );
     },
@@ -41,12 +43,11 @@ import 'firebase/firestore'
     },
 
     rimuoviPreferito(doc) { // FUNZIONE PER ELIMINARE IL PREFERITO DAL DB
-        db
+        return db
         .collection('preferiti')
         .doc(doc)
         .delete();
-        return true;
 
-    }
+    },
     
 }

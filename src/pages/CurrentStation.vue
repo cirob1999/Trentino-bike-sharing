@@ -135,6 +135,7 @@
         this.data = this.data.filter(a=>a.id==this.station)[0]; 
         // this.$nextTick permette di eseguire codice dopo aver aggiornato dei dati 
         // https://stackoverflow.com/questions/47634258/what-is-nexttick-or-what-does-it-do-in-vuejs
+        //questo va modificato
         this.$nextTick(() => {
           this.preferiti = this.checkIfPreferito();
         });
@@ -181,19 +182,23 @@
         //});
         //Vue.localStorage.set('preferiti', JSON.stringify(currentPreferiti));
       //},
-      //checkIfPreferito(){
-        //if (this.data == null){
-          //return false;
-        //}
+      checkIfPreferito(){
+        if (this.data == null){
+          return false;
+        }
+        //ho usato la funzione getPreferito e ho salvato l'outuput nella nuova variabile tuttiPreferiti
+        var tuttiPreferiti = dataService.getPreferito()
+        //VECCHIO CODICE NASCOSTO
         //let localPreferiti = Vue.localStorage.get('preferiti');
         //let currentPreferiti = JSON.parse(localPreferiti);
-        //let filterPreferiti = currentPreferiti.filter(a=>a.name===this.data.name);
+        //filtro tuttiPreferiti e lo inserisco nel nuovo array filterPreferiti
+        let filterPreferiti = tuttiPreferiti.filter(a=>a.name===this.data.name);
         // restituisce true o false, se filterPreferiti non è ne null ne empty, vuol dire che la stazione attuale è nei preferiti
-        //return Array.isArray(filterPreferiti) && filterPreferiti.length;
-      //},
-      checkifPreferito (){
-      var tuttipreferiti = dataservice.prelevaPreferito();
-}
+        return Array.isArray(filterPreferiti) && filterPreferiti.length;
+      },
+      //checkifPreferito (){
+      //var tuttipreferiti = dataservice.prelevaPreferito();
+//},
       switchPreferiti(){
         this.preferiti = !this.preferiti
         if (this.preferiti){
