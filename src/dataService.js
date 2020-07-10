@@ -10,12 +10,17 @@ import 'firebase/firestore'
 
    var db = firebase.firestore();
    export default{
-    aggiungiPreferito() {
+    aggiungiPreferito(preferito) {
         // FUNZIONE PER SALVARE IL PREFERITO NEL DB
         return db
         .collection('preferiti')
         .doc()
-        .set();
+        .set({
+            name: preferito.city,
+            city: preferito.name,
+            id: preferito.id
+        }
+        );
     },
 
     prelevaPreferito(){ // Salvo in array tutti i preferiti che sono presenti sul database
@@ -40,4 +45,5 @@ import 'firebase/firestore'
         return true;
 
     }
+    
 }

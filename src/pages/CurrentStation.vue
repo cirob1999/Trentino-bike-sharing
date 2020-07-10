@@ -191,12 +191,16 @@
         // restituisce true o false, se filterPreferiti non è ne null ne empty, vuol dire che la stazione attuale è nei preferiti
         //return Array.isArray(filterPreferiti) && filterPreferiti.length;
       //},
+      checkifPreferito (){
+      var tuttipreferiti = dataservice.prelevaPreferito();
+}
       switchPreferiti(){
         this.preferiti = !this.preferiti
         if (this.preferiti){
-          dataService.aggiungiPreferiti();
+          let preferito = {'city': this.city, 'name':this.data.name, 'id': this.data.id};
+          dataService.aggiungiPreferiti(preferito);
         }else{
-          dataService.rimuoviPreferiti();
+          dataService.rimuoviPreferiti(this.data.id);
         }
       }
     }
