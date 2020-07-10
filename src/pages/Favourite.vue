@@ -53,7 +53,7 @@
 
   import Navbar from '../components/Navbar.vue';
   import router from '../router.js';
-  import Vue from 'vue';
+  //import Vue from 'vue';
   import DataService from '@/dataService.js'
 
   export default {
@@ -63,11 +63,11 @@
     },
     data: function() {
       let data = [];
-      let preferiti = this.getPreferiti();
+      //let preferiti = this.getPreferiti();
       return {
         data,
         router,
-        preferiti,
+        preferiti: [],
         fav: [],
         esistenzaPreferiti: false,
       };
@@ -114,7 +114,7 @@
       //  Vue.localStorage.set('preferiti', JSON.stringify(currentPreferiti));
       //  this.preferiti = this.getPreferiti();
       }
-    },
+    },)
     },
   },
 }
