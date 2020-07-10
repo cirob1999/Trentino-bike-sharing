@@ -18,7 +18,7 @@
           >
             <v-list-item-icon>
               <v-icon 
-                v-on:click="removePreferito(preferito.name)"
+                v-on:click="rimuoviPreferito(preferito.name)"
                 class="red--text"
                 >
                 mdi-heart
@@ -48,6 +48,7 @@
   import Navbar from '../components/Navbar.vue';
   import router from '../router.js';
   import Vue from 'vue';
+  import DataService from '@/dataService.js'
 
   export default {
     name: 'Favourite',

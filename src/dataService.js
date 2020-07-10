@@ -9,7 +9,10 @@ import 'firebase/firestore'
    });
 
    var db = firebase.firestore();
+
    export default{
+    name: 'DataService',
+
     aggiungiPreferito(preferito) {
         // FUNZIONE PER SALVARE IL PREFERITO NEL DB
         return db
