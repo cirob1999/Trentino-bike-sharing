@@ -196,9 +196,7 @@
         // restituisce true o false, se filterPreferiti non è ne null ne empty, vuol dire che la stazione attuale è nei preferiti
         return Array.isArray(filterPreferiti) && filterPreferiti.length;
       },
-      //checkifPreferito (){
-      //var tuttipreferiti = dataservice.prelevaPreferito();
-//},
+     
       switchPreferiti(){
         this.preferiti = !this.preferiti
         if (this.preferiti){

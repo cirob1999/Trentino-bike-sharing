@@ -12,11 +12,17 @@
         class="mx-auto"
       >
         <v-list>
+          <!--chi sono questo preferito e questi preferiti?? deve essere modificato qualcosa 
           <v-list-item
             v-for="preferito in this.preferiti"
             :key="preferito.name"
+          > IO HO PENSATO: -->
+          <v-list-item 
+            v-for="preferito in fav"
+            :key="preferito.name"
           >
             <v-list-item-icon>
+              <!-- qui va modificato qualcosa? -->
               <v-icon 
                 v-on:click="rimuoviPreferito(this.preferito)"
                 class="red--text"
