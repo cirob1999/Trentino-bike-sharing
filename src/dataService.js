@@ -26,7 +26,7 @@ import 'firebase/firestore'
         );
     },
 
-    prelevaPreferito(){ // Salvo in array tutti i preferiti che sono presenti sul database
+    getPreferito(){ // Salvo in array tutti i preferiti che sono presenti sul database
         return db
         .collection('preferiti')
         .get().then((data) => {

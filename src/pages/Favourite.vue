@@ -1,7 +1,7 @@
 <template>
   <div>
     <navbar></navbar>
-    <div v-if="this.preferiti === null" style="text-align:center">
+    <div v-if="!esistenzaPreferiti" style="text-align:center">
       <h3>Non ci sono preferiti.</h3>
     </div>
     <div v-else>
@@ -18,7 +18,7 @@
           >
             <v-list-item-icon>
               <v-icon 
-                v-on:click="rimuoviPreferito(preferito.name)"
+                v-on:click="rimuoviPreferito(this.preferito)"
                 class="red--text"
                 >
                 mdi-heart
@@ -61,9 +61,33 @@
       return {
         data,
         router,
-        preferiti
+        preferiti,
+        fav: [],
+        esistenzaPreferiti: false,
       };
     },
+
+    created: function() {
+    
+    this.load();
+  },
+  methods: {
+    load: function() {
+      
+      this.loading=true;
+      
+      DataService.getFavorite().then(data =>{
+        this.fav = [];
+        // +++++ CONTROLLO CHE SIANO STATI STROVATI DEI PREFERITI NEL DB +++++
+        if (data.arrayPreferiti.length > 0) {
+            for (let i=0; i<data.arrayPreferiti.length; i++) {
+            
+                this.fav.push(data.arrayPreferiti[i]); //infilo i preferiti trovati all'interno dell'array
+                
+            }
+            this.esistenzaPreferiti = true;
+        } else {
+            this.esistenzaPreferiti = false;
    // methods:{
       //getPreferiti(){
         //let localPreferiti = Vue.localStorage.get('preferiti');
