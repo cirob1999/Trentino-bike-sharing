@@ -6,40 +6,32 @@
     </div>
     <div v-else>
       <h3 style="text-align:center">Lista dei preferiti:</h3>
-      <br>
-      <v-card
-        max-width="500"
-        class="mx-auto"
-      >
+      <br />
+      <v-card max-width="500" class="mx-auto">
         <v-list>
           <!--chi sono questo preferito e questi preferiti?? deve essere modificato qualcosa 
           <v-list-item
             v-for="preferito in this.preferiti"
             :key="preferito.name"
-          > IO HO PENSATO: -->
-          <v-list-item 
-            v-for="preferito in fav"
-            :key="preferito.name"
-          >
+          > IO HO PENSATO:-->
+          <v-list-item v-for="preferito in fav" :key="preferito.name">
             <v-list-item-icon>
               <!-- qui va modificato qualcosa? -->
-              <v-icon 
-                v-on:click="rimuoviPreferito(this.preferito)"
+              <v-icon
+                v-on:click="dataService.rimuoviPreferito(this.preferito)"
                 class="red--text"
-                >
-                mdi-heart
-              </v-icon>
+              >mdi-heart</v-icon>
             </v-list-item-icon>
 
             <v-list-item-content>
               <v-list-item-title v-text="preferito.name"></v-list-item-title>
             </v-list-item-content>
             <v-list-item-action>
-              <v-btn v-on:click="router.push('city/'+preferito.city+'/'+preferito.id)" 
-                    text 
-                    class="green--text">
-                    APRI
-              </v-btn>  
+              <v-btn
+                v-on:click="router.push('city/'+preferito.city+'/'+preferito.id)"
+                text
+                class="green--text"
+              >APRI</v-btn>
             </v-list-item-action>
           </v-list-item>
         </v-list>
@@ -49,73 +41,68 @@
 </template>
 
 <script>
-  // valgono piu o meno gli stessi commenti inseriti in CurrentStation.vue
+// valgono piu o meno gli stessi commenti inseriti in CurrentStation.vue
 
-  import Navbar from '../components/Navbar.vue';
-  import router from '../router.js';
-  //import Vue from 'vue';
-  import DataService from '@/dataService.js'
+import Navbar from "../components/Navbar.vue";
+import router from "../router.js";
+//import Vue from 'vue';
+import DataService from "@/dataService.js";
 
-  export default {
-    name: 'Favourite',
-    components: {
-        'navbar': Navbar
-    },
-    data: function() {
-      let data = [];
-      //let preferiti = this.getPreferiti();
-      return {
-        data,
-        router,
-        preferiti: [],
-        fav: [],
-        esistenzaPreferiti: false,
-      };
-    },
+export default {
+  name: "Favourite",
+  components: {
+    navbar: Navbar
+  },
+  data: function() {
+    let data = [];
+    //let preferiti = this.getPreferiti();
+    return {
+      data,
+      router,
+      preferiti: [],
+      fav: [],
+      esistenzaPreferiti: false
+    };
+  },
 
-    created: function() {
-    
+  created: function() {
     this.load();
   },
   methods: {
     load: function() {
-      
-      this.loading=true;
-      
-      DataService.getPreferito().then(data =>{
-        this.fav = [];
+      this.loading = true;
+
+      DataService.getPreferito().then(data => {
         // +++++ CONTROLLO CHE SIANO STATI STROVATI DEI PREFERITI NEL DB +++++
-        if (data.arrayPreferiti.length > 0) {
-            for (let i=0; i<data.arrayPreferiti.length; i++) {
-            
-                this.fav.push(data.arrayPreferiti[i]); //infilo i preferiti trovati all'interno dell'array
-                
-            }
-            this.esistenzaPreferiti = true;
+        if (data.length > 0) {
+          this.fav = data;
+          console.log(this.fav);
+
+          this.esistenzaPreferiti = true;
         } else {
-            this.esistenzaPreferiti = false;
-   // methods:{
-      //getPreferiti(){
-        //let localPreferiti = Vue.localStorage.get('preferiti');
-       // if (localPreferiti === null){
-        //  return null;
-        //}
-       // return JSON.parse(localPreferiti);
-     // },
-     // removePreferito(preferito){
-        //let localPreferiti = Vue.localStorage.get('preferiti');
-      //  if (localPreferiti === null){
-       //   return;
-      //  }
-      //  let currentPreferiti = JSON.parse(localPreferiti);
-      //  currentPreferiti = currentPreferiti.filter(function( a ) {
-      //    return a.name !== preferito;
-      //  });
-      //  Vue.localStorage.set('preferiti', JSON.stringify(currentPreferiti));
-      //  this.preferiti = this.getPreferiti();
-      }
-    },)
-    },
-  },
-}
+          this.esistenzaPreferiti = false;
+          // methods:{
+          //getPreferiti(){
+          //let localPreferiti = Vue.localStorage.get('preferiti');
+          // if (localPreferiti === null){
+          //  return null;
+          //}
+          // return JSON.parse(localPreferiti);
+          // },
+          // removePreferito(preferito){
+          //let localPreferiti = Vue.localStorage.get('preferiti');
+          //  if (localPreferiti === null){
+          //   return;
+          //  }
+          //  let currentPreferiti = JSON.parse(localPreferiti);
+          //  currentPreferiti = currentPreferiti.filter(function( a ) {
+          //    return a.name !== preferito;
+          //  });
+          //  Vue.localStorage.set('preferiti', JSON.stringify(currentPreferiti));
+          //  this.preferiti = this.getPreferiti();
+        }
+      });
+    }
+  }
+};
 </script>

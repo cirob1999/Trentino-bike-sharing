@@ -88,7 +88,7 @@
   import axios from 'axios'
   import router from '../router.js'
   import * as VueGoogleMaps from 'vue2-google-maps'
-  import dataService from '@/dataService.js'
+  import dataService from '../dataService.js'
   //import Vue from 'vue'
   
   export default {
@@ -136,9 +136,6 @@
         // this.$nextTick permette di eseguire codice dopo aver aggiornato dei dati 
         // https://stackoverflow.com/questions/47634258/what-is-nexttick-or-what-does-it-do-in-vuejs
         //questo va modificato
-        this.$nextTick(() => {
-          this.preferiti = this.checkIfPreferito();
-        });
         return this.data;
       })
       .catch(error => {
@@ -149,6 +146,11 @@
       })
       .finally(() => this.loading = false)
     },
+
+    created: function(){
+      this.checkIfPreferito();
+    },
+
     methods: {
       //aggiungiPreferiti(){
         // Vue.localStorage.get(nomeChiave) -> restituisce tutti i valori dal local storage
@@ -187,23 +189,41 @@
           return false;
         }
         //ho usato la funzione getPreferito e ho salvato l'outuput nella nuova variabile tuttiPreferiti
-        var tuttiPreferiti = dataService.getPreferito()
+        dataService.getPreferito().then(data =>{
+
+          let tuttiPreferiti = data;
+
+          let filterPreferiti = []; 
+          filterPreferiti = tuttiPreferiti.find(a => a == this.data.name);
+          //ecc..
+
+          let trovato = false;
+
+          if(filterPreferiti != undefined)
+            trovato = true;
+          
+          this.preferiti = trovato;
+        });
         //VECCHIO CODICE NASCOSTO
         //let localPreferiti = Vue.localStorage.get('preferiti');
         //let currentPreferiti = JSON.parse(localPreferiti);
         //filtro tuttiPreferiti e lo inserisco nel nuovo array filterPreferiti
-        let filterPreferiti = tuttiPreferiti.filter(a=>a.name===this.data.name);
+        
         // restituisce true o false, se filterPreferiti non è ne null ne empty, vuol dire che la stazione attuale è nei preferiti
-        return Array.isArray(filterPreferiti) && filterPreferiti.length;
       },
      
       switchPreferiti(){
         this.preferiti = !this.preferiti
         if (this.preferiti){
+          console.log("STO IMPOSTANDO UN PREFERITO");
           let preferito = {'city': this.city, 'name':this.data.name, 'id': this.data.id};
-          dataService.aggiungiPreferiti(preferito);
+
+          console.log(preferito);
+
+          dataService.aggiungiPreferito(preferito);
         }else{
-          dataService.rimuoviPreferiti(this.data.id);
+          console.log("STO RIMUOVENDO UN PREFERITO");
+          dataService.rimuoviPreferito(this.data.id);
         }
       }
     }
