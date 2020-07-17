@@ -32,7 +32,7 @@ export default {
             .get().then((data) => {
                 let arrayPreferiti = [];
                 data.forEach(doc => {
-                    arrayPreferiti.push(doc.data().nome); // metto ogni preferito trovato nel array
+                    arrayPreferiti.push(doc.data()); // metto ogni preferito trovato nel array
                 });
 
                 return arrayPreferiti;
