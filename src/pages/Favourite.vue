@@ -1,7 +1,7 @@
 <template>
   <div>
     <navbar></navbar>
-    <div v-if="!esistenzaPreferiti" style="text-align:center">
+    <div v-if="!presenzaPreferiti" style="text-align:center">
       <h3>Non ci sono preferiti.</h3>
     </div>
     <div v-else>
@@ -9,16 +9,15 @@
       <br />
       <v-card max-width="500" class="mx-auto">
         <v-list>
-          <!--chi sono questo preferito e questi preferiti?? deve essere modificato qualcosa 
-          <v-list-item
+          <!-- <v-list-item
             v-for="preferito in this.preferiti"
             :key="preferito.name"
-          > IO HO PENSATO:-->
+          -->
           <v-list-item v-for="preferito in fav" :key="preferito.name">
             <v-list-item-icon>
               <!-- qui va modificato qualcosa? -->
               <v-icon
-                v-on:click="dataService.rimuoviPreferito(this.preferito)"
+                v-on:click="dataService.rimuoviPreferito(preferito)"
                 class="red--text"
               >mdi-heart</v-icon>
             </v-list-item-icon>
@@ -61,7 +60,7 @@ export default {
       router,
       preferiti: [],
       fav: [],
-      esistenzaPreferiti: false
+      presenzaPreferiti: false
     };
   },
 
@@ -78,9 +77,9 @@ export default {
           this.fav = data;
           console.log(this.fav);
 
-          this.esistenzaPreferiti = true;
+          this.presenzaPreferiti = true;
         } else {
-          this.esistenzaPreferiti = false;
+          this.presenzaPreferiti = false;
           // methods:{
           //getPreferiti(){
           //let localPreferiti = Vue.localStorage.get('preferiti');
