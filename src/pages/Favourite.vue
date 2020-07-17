@@ -13,7 +13,7 @@
             v-for="preferito in this.preferiti"
             :key="preferito.name"
           -->
-          <v-list-item v-for="preferito in fav" :key="preferito.name">
+          <v-list-item v-for="preferito in this.fav" :key="preferito.name">
             <v-list-item-icon>
               <!-- qui va modificato qualcosa? -->
               <v-icon
