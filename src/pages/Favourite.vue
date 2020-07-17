@@ -80,25 +80,7 @@ export default {
           this.presenzaPreferiti = true;
         } else {
           this.presenzaPreferiti = false;
-          // methods:{
-          //getPreferiti(){
-          //let localPreferiti = Vue.localStorage.get('preferiti');
-          // if (localPreferiti === null){
-          //  return null;
-          //}
-          // return JSON.parse(localPreferiti);
-          // },
-          // removePreferito(preferito){
-          //let localPreferiti = Vue.localStorage.get('preferiti');
-          //  if (localPreferiti === null){
-          //   return;
-          //  }
-          //  let currentPreferiti = JSON.parse(localPreferiti);
-          //  currentPreferiti = currentPreferiti.filter(function( a ) {
-          //    return a.name !== preferito;
-          //  });
-          //  Vue.localStorage.set('preferiti', JSON.stringify(currentPreferiti));
-          //  this.preferiti = this.getPreferiti();
+          
         }
       });
     }

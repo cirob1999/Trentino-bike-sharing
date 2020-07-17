@@ -49,5 +49,43 @@ export default {
                 });
             });
     },
+    switchPreferiti(){
+        this.preferiti = !this.preferiti
+        if (this.preferiti){
+          console.log("STO IMPOSTANDO UN PREFERITO");
+          let preferito = {'city': this.city, 'name':this.data.name, 'id': this.data.id};
 
+          console.log(preferito);
+
+          this.aggiungiPreferito(preferito);
+        }else{
+          console.log("STO RIMUOVENDO UN PREFERITO");
+          this.rimuoviPreferito(this.data.id);
+        }
+      }
+      
+      checkIfPreferito(){
+        if (this.data == null){
+          return false;
+        }
+        //ho usato la funzione getPreferito e ho salvato l'outuput nella nuova variabile tuttiPreferiti
+        this.getPreferito().then(data =>{
+
+          let tuttiPreferiti = data;
+
+          let filterPreferiti = []; 
+          filterPreferiti = tuttiPreferiti.find(a => a == this.data.name);
+          //ecc..
+
+          let trovato = false;
+
+          if(filterPreferiti != undefined)
+            trovato = true;
+          
+          this.preferiti = trovato;
+        });
+    
+        
+        // restituisce true o false, se filterPreferiti non è ne null ne empty, vuol dire che la stazione attuale è nei preferiti
+      },
 }
