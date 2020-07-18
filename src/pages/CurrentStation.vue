@@ -16,7 +16,19 @@
          allora mostra tutto il contenuto
     -->
     <div v-else-if="this.data.length !== 0 && !this.errored">
-      
+      <!-- pop up per la condivisione -->
+      <v-alert
+        v-model="alert"
+        dismissible
+        color="green"
+        border="left"
+        elevation="2"
+        colored-border
+        icon="mdi-share-variant"
+        style="margin:1% 15%">
+        <router-link :to="router.currentRoute.fullPath">{{this.currentUrl}}</router-link>
+      </v-alert>
+
       <v-card
           class="mx-auto"
           max-width="70%"
@@ -100,6 +112,7 @@
       let previousCity = this.city;
       let alert = false;
       let preferiti = false;
+      // currentUrl è il link cliccabile che appare nell'alert
       let currentUrl = window.location.origin + '/' + router.currentRoute.fullPath;
       return {
         data,
@@ -148,7 +161,7 @@
 
           let filterPreferiti = []; 
           filterPreferiti = tuttiPreferiti.filter(a=>a.id==this.name)[0];
-
+          console.log(filterPreferiti);
           let trovato = false;
 
           if(filterPreferiti != undefined)
