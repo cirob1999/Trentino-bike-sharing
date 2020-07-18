@@ -151,6 +151,8 @@
 
     methods: {
       checkIfPreferito(){
+        this.loading = true;
+
         if (this.data == null){
           return false;
         }
@@ -159,8 +161,11 @@
 
           let tuttiPreferiti = data;
 
+          // Fonte: https://developer.mozilla.org/it/docs/Web/JavaScript/Reference/Global_Objects/Array/filter 
           tuttiPreferiti = tuttiPreferiti.filter(item => item.nome === this.data.name);
 
+          // Fonti: https://stackoverrun.com/it/q/5347986
+          // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/findIndex
           var result = tuttiPreferiti.map(a => a.nome);
           console.log(tuttiPreferiti);
           console.log(result);
@@ -171,7 +176,6 @@
           this.preferiti = trovato;
           // restituisce true o false, se filterPreferiti non è ne null ne empty, vuol dire che la stazione attuale è nei preferiti
         });
-  
       },
       switchPreferiti(){
         this.preferiti = !this.preferiti
