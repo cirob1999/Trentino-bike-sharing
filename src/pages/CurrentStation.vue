@@ -16,18 +16,7 @@
          allora mostra tutto il contenuto
     -->
     <div v-else-if="this.data.length !== 0 && !this.errored">
-      <v-alert
-        v-model="alert"
-        dismissible
-        color="green"
-        border="left"
-        elevation="2"
-        colored-border
-        icon="mdi-share-variant"
-        style="margin:1% 15%"
-      >
-        <router-link :to="router.currentRoute.fullPath">{{this.currentUrl}}</router-link>
-      </v-alert>
+      
       <v-card
           class="mx-auto"
           max-width="70%"
