@@ -136,12 +136,12 @@
         this.data = this.data.filter(a=>a.id==this.station)[0]; 
         return this.data;
       })
-      .catch(error => {
+      /*.catch(error => {
           console.log(error);
           console.log (JSON.stringify(error));
           this.errored = true;
           return this.errored;
-      })
+      })*/
       .finally(() => this.loading = false)
     },
 
@@ -159,14 +159,15 @@
 
           let tuttiPreferiti = data;
 
-          let filterPreferiti = []; 
-          filterPreferiti = tuttiPreferiti.filter(a=>a.id==this.name)[0];
-          console.log(filterPreferiti);
-          let trovato = false;
+          tuttiPreferiti = tuttiPreferiti.filter(item => item.nome === this.data.name);
 
-          if(filterPreferiti != undefined)
-            trovato = true;
+          var result = tuttiPreferiti.map(a => a.nome);
+          console.log(tuttiPreferiti);
+          console.log(result);
           
+          let trovato = false;
+          if (result == this.data.name)
+            trovato = true;
           this.preferiti = trovato;
           // restituisce true o false, se filterPreferiti non è ne null ne empty, vuol dire che la stazione attuale è nei preferiti
         });
@@ -177,9 +178,7 @@
         if (this.preferiti){
           console.log("STO IMPOSTANDO UN PREFERITO");
           let preferito = {'city': this.city, 'name':this.data.name, 'id': this.data.id};
-
-          console.log(preferito);
-
+  
           dataService.aggiungiPreferito(preferito);
         }else{
           console.log("STO RIMUOVENDO UN PREFERITO");

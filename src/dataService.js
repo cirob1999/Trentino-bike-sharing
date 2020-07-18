@@ -15,9 +15,11 @@ export default {
 
     aggiungiPreferito(preferito) {
         // FUNZIONE PER SALVARE IL PREFERITO NEL DB
+        let nomeDoc = preferito.name; 
         return db
             .collection('preferiti')
-            .add({
+            .doc(nomeDoc)
+            .set({
                 nome: preferito.name,
                 città: preferito.city,
                 id: preferito.id
