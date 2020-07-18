@@ -162,7 +162,7 @@
           let tuttiPreferiti = data;
 
           let filterPreferiti = []; 
-          filterPreferiti = tuttiPreferiti.filter(a=>a.id==this.name);
+          filterPreferiti = tuttiPreferiti.find(a => a == this.data.name);
           //ecc..
 
           let trovato = false;
