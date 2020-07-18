@@ -45,7 +45,7 @@
 <script>
   import Navbar from '../components/Navbar.vue'
   import cities from '@/assets/city.json'
-  import axios from 'axios'; // DOVE SI TROVA?
+  import axios from 'axios'; 
   import router from '../router.js'
 
   export default {

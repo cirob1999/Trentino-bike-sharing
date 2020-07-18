@@ -9,13 +9,8 @@
       <br />
       <v-card max-width="500" class="mx-auto">
         <v-list>
-          <!-- <v-list-item
-            v-for="preferito in this.preferiti"
-            :key="preferito.name"
-          -->
           <v-list-item v-for="preferito in this.fav" :key="preferito.nome">
             <v-list-item-icon>
-              <!-- qui va modificato qualcosa? -->
               <v-icon
                 v-on:click="rimuovi(preferito.id)"
                 class="red--text"
@@ -44,7 +39,6 @@
 
 import Navbar from "../components/Navbar.vue";
 import router from "../router.js";
-//import Vue from 'vue';
 import DataService from "@/dataService.js";
 
 export default {
@@ -54,7 +48,6 @@ export default {
   },
   data: function() {
     let data = [];
-    //let preferiti = this.getPreferiti();
     return {
       data,
       router,
@@ -71,7 +64,7 @@ export default {
       }else{
         this.presenzaPreferiti = false;
       }
-      //this.presenzaPreferiti = (this.fav.length > 0) ? false : true;
+      //sintetizzato --> this.presenzaPreferiti = (this.fav.length > 0) ? false : true;
     })
   },
   created: function() {
@@ -82,11 +75,9 @@ export default {
       this.loading = true;
 
       DataService.getPreferito().then(data => {
-        // +++++ CONTROLLO CHE SIANO STATI STROVATI DEI PREFERITI NEL DB +++++
+        // Verifico che ci siano dei preferiti e trasferisco i dati in fav
         if (data.length > 0) {
           this.fav = data;
-          console.log(this.fav);
-
           this.presenzaPreferiti = true;
         } else {
           this.presenzaPreferiti = false;

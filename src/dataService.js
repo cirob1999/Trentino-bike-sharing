@@ -15,8 +15,6 @@ export default {
 
     aggiungiPreferito(preferito) {
         // FUNZIONE PER SALVARE IL PREFERITO NEL DB
-        //let nomeDoc = preferito.name + "-" + preferito.id;
-
         return db
             .collection('preferiti')
             .add({
@@ -32,7 +30,7 @@ export default {
             .get().then((data) => {
                 let arrayPreferiti = [];
                 data.forEach(doc => {
-                    arrayPreferiti.push(doc.data()); // metto ogni preferito trovato nel array
+                    arrayPreferiti.push(doc.data()); // metto ogni preferito (doc) trovato all'interno dell' array
                 });
 
                 return arrayPreferiti;

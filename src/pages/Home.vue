@@ -13,11 +13,10 @@
             <v-list-item three-line>
               <v-list-item-content>
                 <v-list-item-title class="headline mb-1">{{city.city}}</v-list-item-title> 
-                <!-- citi.city significa che prendo ogni città (city) dal file city? -->
+                <!-- citi.city significa che prendo ogni città (city) dal file city -->
               </v-list-item-content>
             </v-list-item>
             <v-card-actions>
-              <!-- router.push è tipo <router-link> per fare il redirect -->
               <v-btn v-on:click="router.push('city/'+city.id)" text class="green--text">APRI</v-btn>
             </v-card-actions>
           </v-card>

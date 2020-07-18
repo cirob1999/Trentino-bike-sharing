@@ -118,13 +118,9 @@
         //response.data contiene i dati raw dal server quindi nome, indirizzo, posizione ecc.
         // dettagli contenuto: https://os.smartcommunitylab.it/openservice/services/2
         this.data = response.data;
-        //console.log(this.data);
         this.data = JSON.parse(JSON.stringify(this.data));
         // restituisce parte dell'array dove l'id è uguale al nome della stazione passata dall'url
         this.data = this.data.filter(a=>a.id==this.station)[0]; 
-        // this.$nextTick permette di eseguire codice dopo aver aggiornato dei dati 
-        // https://stackoverflow.com/questions/47634258/what-is-nexttick-or-what-does-it-do-in-vuejs
-        //questo va modificato
         return this.data;
       })
       .catch(error => {
@@ -151,8 +147,7 @@
           let tuttiPreferiti = data;
 
           let filterPreferiti = []; 
-          filterPreferiti = tuttiPreferiti.filter(a=>a.id==this.name);
-          //ecc..
+          filterPreferiti = tuttiPreferiti.filter(a=>a.id==this.name)[0];
 
           let trovato = false;
 
@@ -160,10 +155,9 @@
             trovato = true;
           
           this.preferiti = trovato;
+          // restituisce true o false, se filterPreferiti non è ne null ne empty, vuol dire che la stazione attuale è nei preferiti
         });
-    
-        
-        // restituisce true o false, se filterPreferiti non è ne null ne empty, vuol dire che la stazione attuale è nei preferiti
+  
       },
       switchPreferiti(){
         this.preferiti = !this.preferiti
