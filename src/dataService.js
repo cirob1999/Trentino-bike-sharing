@@ -14,7 +14,7 @@ export default {
     name: 'DataService',
 
     aggiungiPreferito(preferito) {
-        // FUNZIONE PER SALVARE IL PREFERITO NEL DB
+        // Funzione per salvare il preferito nel db
         let nomeDoc = preferito.name; 
         return db
             .collection('preferiti')
@@ -39,7 +39,7 @@ export default {
             });
     },
 
-    rimuoviPreferito(id) { // FUNZIONE PER ELIMINARE IL PREFERITO DAL DB
+    rimuoviPreferito(id) { // Funzione per eliminare il preferito dal db
         return db.collection("preferiti")
             .where("id", "==", id)
             .get()
