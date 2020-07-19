@@ -146,7 +146,7 @@
     },
 
     created: function(){
-      this.checkIfPreferito();
+      this.checkIfPreferito(); // questa funzione controlla se la stazione è un preferito, cioè se è presente nel db
     },
 
     methods: {
@@ -176,7 +176,8 @@
           // restituisce true o false, se filterPreferiti non è ne null ne empty, vuol dire che la stazione attuale è nei preferiti
         });
       },
-      switchPreferiti(){
+      // cambia la variabile 'preferiti' da true a false e viceversa e, di conseguenza, richiama la funzione per aggiungere o eliminare un preferito
+      switchPreferiti(){  
         this.preferiti = !this.preferiti
         if (this.preferiti){
           console.log("STO IMPOSTANDO UN PREFERITO");
