@@ -165,7 +165,6 @@
           tuttiPreferiti = tuttiPreferiti.filter(item => item.nome === this.data.name);
 
           // Fonti: https://stackoverrun.com/it/q/5347986
-          // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/findIndex
           var result = tuttiPreferiti.map(a => a.nome);
           console.log(tuttiPreferiti);
           console.log(result);

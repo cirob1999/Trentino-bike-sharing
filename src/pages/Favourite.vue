@@ -58,6 +58,9 @@ export default {
     };
   },
   updated: function () {
+    //nextTick permette di fare qualcosa dopo aver modificato i dati e VueJs ha aggiornato il DOM e prima che
+    //il browser ha renderizzato i cambiamenti sulla pagina
+    //https://stackoverflow.com/questions/47634258/what-is-nexttick-or-what-does-it-do-in-vuejs
     this.$nextTick(function () {
       if (this.fav.length > 0){
         this.presenzaPreferiti = true;
@@ -90,6 +93,7 @@ export default {
       for (var i=0; i < this.fav.length; i++){
         console.log(this.fav[i]);
         if (this.fav[i].id === id){
+          // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/findIndex
           this.fav.splice(this.fav.findIndex(item => item.id === id), 1)
         } 
       }
