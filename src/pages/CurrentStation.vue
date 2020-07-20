@@ -136,12 +136,12 @@
         this.data = this.data.filter(a=>a.id==this.station)[0]; 
         return this.data;
       })
-      /*.catch(error => {
+      .catch(error => {
           console.log(error);
           console.log (JSON.stringify(error));
           this.errored = true;
           return this.errored;
-      })*/
+      })
       .finally(() => this.loading = false)
     },
 
